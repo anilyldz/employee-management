@@ -31,7 +31,7 @@ public class EmployeeRestController {
         return employee;
     }
 
-    @PostMapping("/employees/")
+    @PostMapping("/employees")
     public Employee save(@RequestBody Employee employee) {
         employee.setId(0);
         Employee savedEmployee = employeeService.save(employee);
@@ -39,6 +39,15 @@ public class EmployeeRestController {
             throw new RuntimeException("Employee not saved");
         }
         return savedEmployee;
+    }
+
+    @PutMapping("/employees")
+    public Employee update(@RequestBody Employee employee) {
+        Employee updatedEmployee = employeeService.save(employee);
+        if (updatedEmployee == null) {
+            throw new RuntimeException("Employee not updated");
+        }
+        return updatedEmployee;
     }
 
 }
