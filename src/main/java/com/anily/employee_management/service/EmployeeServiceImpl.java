@@ -4,6 +4,7 @@ import com.anily.employee_management.dao.EmployeeDAO;
 import com.anily.employee_management.entity.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -20,5 +21,22 @@ public class EmployeeServiceImpl implements EmployeeService{
     @Override
     public List<Employee> findAll() {
         return employeeDAO.findAll();
+    }
+
+    @Override
+    public Employee findById(int employeeId) {
+        return employeeDAO.findById(employeeId);
+    }
+
+    @Transactional
+    @Override
+    public Employee save(Employee employee) {
+        return employeeDAO.save(employee);
+    }
+
+    @Transactional
+    @Override
+    public void deleteById(int employeeId) {
+        employeeDAO.deleteById(employeeId);
     }
 }
