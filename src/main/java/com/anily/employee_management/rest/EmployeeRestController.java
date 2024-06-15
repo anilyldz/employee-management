@@ -31,4 +31,14 @@ public class EmployeeRestController {
         return employee;
     }
 
+    @PostMapping("/employees/")
+    public Employee save(@RequestBody Employee employee) {
+        employee.setId(0);
+        Employee savedEmployee = employeeService.save(employee);
+        if (savedEmployee == null) {
+            throw new RuntimeException("Employee not saved");
+        }
+        return savedEmployee;
+    }
+
 }
